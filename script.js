@@ -53,17 +53,14 @@ function clearPixels() {
 }
 clearPixels();
 
-function reDoBoard(size) {
+query('#confirm-button').addEventListener('click', () => {
   document.querySelector('#pixel-board').innerText = '';
-  const quant = size * size;
-  pixelBoard.style.grid = `auto-flow / repeat(${size}, auto)`;
+  const boardSize = query('#boardSize').value;
+  const quant = boardSize * boardSize;
+  pixelBoard.style.grid = `auto-flow / repeat(${boardSize}, auto)`;
   for (let i = 0; i < quant; i += 1) {
     const pixel = document.createElement('div');
-
     pixel.className = 'pixel';
     pixelBoard.appendChild(pixel);
   }
-}
-document
-  .querySelector('#confirm-button')
-  .addEventListener('click', reDoBoard());
+});
