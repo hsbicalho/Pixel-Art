@@ -1,11 +1,10 @@
 const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
+const pixelBoard = query('#pixel-board');
 
 function criaPixel(quant) {
-  const pixelBoard = query('#pixel-board');
   for (let i = 0; i < quant; i += 1) {
     const pixel = document.createElement('div');
-
     pixel.className = 'pixel';
     pixelBoard.appendChild(pixel);
   }
@@ -56,7 +55,6 @@ clearPixels();
 
 function reDoBoard(size) {
   document.querySelector('#pixel-board').innerText = '';
-  const pixelBoard = document.querySelector('#pixel-board');
   const quant = size * size;
   pixelBoard.style.grid = `auto-flow / repeat(${size}, auto)`;
   for (let i = 0; i < quant; i += 1) {
@@ -66,4 +64,6 @@ function reDoBoard(size) {
     pixelBoard.appendChild(pixel);
   }
 }
-document.querySelector('#confirm-button').addEventListener('click', reDoBoard());
+document
+  .querySelector('#confirm-button')
+  .addEventListener('click', reDoBoard());
