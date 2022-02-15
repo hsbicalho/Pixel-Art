@@ -1,5 +1,8 @@
+const query = document.querySelector.bind(document);
+const queryAll = document.querySelectorAll.bind(document);
+
 function criaPixel(quant) {
-  const pixelBoard = document.querySelector('#pixel-board');
+  const pixelBoard = query('#pixel-board');
   for (let i = 0; i < quant; i += 1) {
     const pixel = document.createElement('div');
 
@@ -9,12 +12,12 @@ function criaPixel(quant) {
 }
 criaPixel(25);
 function inicialSelected() {
-  const color1 = document.querySelector('#colorBlack');
+  const color1 = query('#colorBlack');
   color1.classList.add('selected');
 }
 inicialSelected();
 function setSelected(evento) {
-  document.querySelector('.selected').classList.remove('selected');
+  query('.selected').classList.remove('selected');
   evento.target.classList.add('selected');
 }
 
@@ -50,3 +53,17 @@ function clearPixels() {
   });
 }
 clearPixels();
+
+function reDoBoard(size) {
+  document.querySelector('#pixel-board').innerText = '';
+  const pixelBoard = document.querySelector('#pixel-board');
+  const quant = size * size;
+  pixelBoard.style.grid = `auto-flow / repeat(${size}, auto)`;
+  for (let i = 0; i < quant; i += 1) {
+    const pixel = document.createElement('div');
+
+    pixel.className = 'pixel';
+    pixelBoard.appendChild(pixel);
+  }
+}
+document.querySelector('#confirm-button').addEventListener('click', reDoBoard());
