@@ -9,8 +9,6 @@
   </head>
   <body>
     <h1 id="title">Paleta de Cores</h1>
-    <input id="boardSize" type="text" />
-    <button id="confirm-button">confirmar</button>
     <table id="tabela">
       <tr id="color-palette">
         <td class="color black" id="colorBlack"></td>
@@ -19,6 +17,10 @@
         <td class="color green" id="colorGreen"></td>
       </tr>
     </table>
+    <div id="sizePiece">
+      <input id="board-size" type="number" min="5" max="50" />
+      <button id="generate-board">VQV</button>
+    </div>
     <button id="clear-board">Limpar</button>
     <section id="pixel-board"></section>
     <script src="script.js"></script>

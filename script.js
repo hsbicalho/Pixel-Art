@@ -10,6 +10,18 @@ function criaPixel(quant) {
   }
 }
 criaPixel(25);
+query('#generate-board').addEventListener('click', () => {
+  query('#pixel-board').innerText = '';
+  const boardSize = query('#board-size').value;
+  const quant = boardSize * boardSize;
+  pixelBoard.style.grid = `auto-flow / repeat(${boardSize}, auto)`;
+  for (let i = 0; i < quant; i += 1) {
+    const pixel = document.createElement('div');
+    pixel.className = 'pixel';
+    pixelBoard.appendChild(pixel);
+  }
+});
+
 function inicialSelected() {
   const color1 = query('#colorBlack');
   color1.classList.add('selected');
@@ -20,18 +32,18 @@ function setSelected(evento) {
   evento.target.classList.add('selected');
 }
 
-document.querySelector('#colorBlack').addEventListener('click', setSelected);
-document.querySelector('#colorRed').addEventListener('click', setSelected);
-document.querySelector('#colorBlue').addEventListener('click', setSelected);
-document.querySelector('#colorGreen').addEventListener('click', setSelected);
+query('#colorBlack').addEventListener('click', setSelected);
+query('#colorRed').addEventListener('click', setSelected);
+query('#colorBlue').addEventListener('click', setSelected);
+query('#colorGreen').addEventListener('click', setSelected);
 
 function selectedColor() {
-  const colorSelected = document.querySelector('.selected');
+  const colorSelected = query('.selected');
   return colorSelected.classList[1];
 }
 
 function paint() {
-  const arrayPixels = document.querySelectorAll('.pixel');
+  const arrayPixels = queryAll('.pixel');
   for (let i = 0; i < arrayPixels.length; i += 1) {
     const pixel = arrayPixels[i];
     pixel.addEventListener('click', () => {
@@ -42,8 +54,8 @@ function paint() {
 paint();
 
 function clearPixels() {
-  const button = document.querySelector('#clear-board');
-  const arrayPixels = document.querySelectorAll('.pixel');
+  const button = query('#clear-board');
+  const arrayPixels = queryAll('.pixel');
   button.addEventListener('click', () => {
     for (let i = 0; i < arrayPixels.length; i += 1) {
       const pixel = arrayPixels[i];
@@ -52,15 +64,3 @@ function clearPixels() {
   });
 }
 clearPixels();
-
-query('#confirm-button').addEventListener('click', () => {
-  document.querySelector('#pixel-board').innerText = '';
-  const boardSize = query('#boardSize').value;
-  const quant = boardSize * boardSize;
-  pixelBoard.style.grid = `auto-flow / repeat(${boardSize}, auto)`;
-  for (let i = 0; i < quant; i += 1) {
-    const pixel = document.createElement('div');
-    pixel.className = 'pixel';
-    pixelBoard.appendChild(pixel);
-  }
-});
