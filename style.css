@@ -32,8 +32,9 @@
 }
 
 #pixel-board {
-  margin-left: auto;
-  margin-right: auto;
+  display: grid;
+  grid: auto-flow / repeat(5, auto);
+  justify-content: center;
 }
 
 .pixel {
