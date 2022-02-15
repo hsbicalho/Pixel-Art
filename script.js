@@ -11,3 +11,9 @@ function criaBoard(columns, lines) {
   }
 }
 criaBoard(5, 5);
+
+function inicialSelected() {
+  const color1 = document.querySelector('#colorBlack');
+  color1.classList.add('selected');
+}
+inicialSelected();
