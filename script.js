@@ -62,6 +62,17 @@ function clearPixels() {
 }
 clearPixels();
 
+function newBoard() {
+  const boardSize = query('#board-size').value;
+  const quant = boardSize * boardSize;
+  pixelBoard.style.grid = `auto-flow / repeat(${boardSize}, auto)`;
+  for (let i = 0; i < quant; i += 1) {
+    const pixel = document.createElement('div');
+    pixel.className = 'pixel';
+    pixelBoard.appendChild(pixel);
+  }
+}
+
 query('#generate-board').addEventListener('click', () => {
   query('#pixel-board').innerText = '';
   const boardSize = query('#board-size').value;
@@ -74,13 +85,7 @@ query('#generate-board').addEventListener('click', () => {
     pixelBoard.style.grid = 'auto-flow / repeat(50, auto)';
     return criaPixel(2500);
   }
-  const quant = boardSize * boardSize;
-  pixelBoard.style.grid = `auto-flow / repeat(${boardSize}, auto)`;
-  for (let i = 0; i < quant; i += 1) {
-    const pixel = document.createElement('div');
-    pixel.className = 'pixel';
-    pixelBoard.appendChild(pixel);
-  }
+  newBoard();
   paint();
   clearPixels();
 });
